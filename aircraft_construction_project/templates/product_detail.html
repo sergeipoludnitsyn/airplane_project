@@ -1,0 +1,102 @@
+<!-- templates/product_detail.html -->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+</head>
+<body>
+
+<div class="product-page">
+    <!-- Шапка страницы с логотипом -->
+    <header>
+        <a href="{% url 'catalog' %}" class="logo-link">
+            <img class="logo" src="{% static 'logo.jpg' %}" alt="Логотип">
+        </a>
+    </header>
+    
+    <!-- Основное содержимое страницы -->
+    <main class="product-container">
+        <!-- Название товара по центру -->
+        <h1 class="product-title">{{ product.title }}</h1>
+        
+        <!-- Контейнер с видео и наложенными элементами -->
+        <div class="video-with-overlays">
+            <!-- Видео товара -->
+            <div class="video-wrapper">
+                {% if product.video_url %}
+                    <video class="product-video" 
+                           id="productVideo"
+                           controls
+                           autoplay
+                           muted
+                           loop
+                           playsinline
+                           {% if product.poster_url %}poster="{{ product.poster_url }}"{% endif %}>
+                        <source src="{{ product.video_url }}" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                {% else %}
+                    <div class="no-video">
+                        <p>Видео не доступно</p>
+                        {% if product.image_url %}
+                            <img src="{{ product.image_url }}" alt="{{ product.title }}">
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- Наложенные элементы (характеристики и цена) -->
+            <div class="overlay-content">
+                <!-- Технические характеристики -->
+                <div class="specs-list">
+                    <div class="spec-item">
+                        <span class="spec-label">Ширина:</span>
+                        <span class="spec-value">{{ product.width }} мм</span>
+                    </div>
+                    
+                    <div class="spec-item">
+                        <span class="spec-label">Высота:</span>
+                        <span class="spec-value">{{ product.height }} мм</span>
+                    </div>
+                    
+                    <div class="spec-item">
+                        <span class="spec-label">Глубина:</span>
+                        <span class="spec-value">{{ product.depth }} мм</span>
+                    </div>
+                    
+                    <div class="spec-item">
+                        <span class="spec-label">Материал:</span>
+                        <span class="spec-value">{{ product.material }}</span>
+                    </div>
+                    
+                    {% if product.waist_cushion and product.waist_cushion != '-' %}
+                    <div class="spec-item">
+                        <span class="spec-label">Поясничная подушка:</span>
+                        <span class="spec-value">{{ product.waist_cushion }}</span>
+                    </div>
+                    {% endif %}
+                    
+                    {% if product.fold_table and product.fold_table != '-' %}
+                    <div class="spec-item">
+                        <span class="spec-label">Складной столик:</span>
+                        <span class="spec-value">{{ product.fold_table }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Цена -->
+                <div class="price">
+                    <span>{{ product.price }} </span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

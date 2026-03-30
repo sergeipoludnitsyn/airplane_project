@@ -1,0 +1,40 @@
+/* container.css */
+
+.container {
+    position: relative; /* Для позиционирования элементов */
+    background-color: #f0f0f0; /* Светлый серый фон контейнера */
+    padding: 20px; /* Внутренние отступы */
+    margin: 20px auto; /* Внешние отступы и центрирование */
+    max-width: 1200px; /* Максимальная ширина контейнера */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Мягкая тень */
+}
+
+/* Заголовок по центру в цветной полосе */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px; /* Высота полосы */
+    background-color: #007bff; /* Голубой цвет полосы */
+    z-index: -1; /* Фон позади заголовка */
+}
+
+.container h1 {
+    position: relative;
+    text-align: center; /* Центровка текста */
+    color: white; /* Белый цвет текста */
+    margin-top: 0; /* Убираем верхний отступ */
+    padding-top: 10px; /* Небольшой отступ сверху */
+    z-index: 1; /* Над полосой */
+}
+
+/* Левое изображение */
+.container img.logo {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 50px; /* Размер логотипа */
+    height: auto;
+}

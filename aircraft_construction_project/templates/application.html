@@ -1,0 +1,67 @@
+<!-- templates/application.html -->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Оформление заявки</title>
+    <link rel="stylesheet" href="{% static 'css/application.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <!-- Шапка страницы с логотипом -->
+    <header>
+        <a href="{% url 'catalog' %}" class="logo-link">
+            <img class="logo" src="{% static 'logo.jpg' %}" alt="Логотип">
+        </a>
+    </header>
+    
+    <!-- Основное содержимое страницы -->
+    <div class="content-wrapper">
+        <!-- Форма оформления заявки -->
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            <!-- Верхняя секция с организацией и итоговой суммой -->
+            <div class="top-section">
+                <div class="organization-field">
+                    <input type="text" id="organization" name="organization" placeholder="Название организации">
+                </div>
+                <div class="total-sum-field">
+                    <label>Итоговая сумма:</label>
+                    <span class="total-sum">{{ total_sum }} ₽</span>
+                </div>
+            </div>
+            
+            <!-- Центральная таблица с товарами -->
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>Изображение</th>
+                        <th>Наименование</th>
+                        <th>Цена</th>
+                        <th>Количество</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                    <tr class="product-row">
+                        <td class="product-image-cell">
+                            <img class="product-image" src="{% static item.image %}" alt="{{ item.title }}">
+                        </td>
+                        <td class="product-name">{{ item.title }}</td>
+                        <td class="product-price">{{ item.price }} ₽</td>
+                        <td class="product-quantity">{{ item.quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
