@@ -1,0 +1,2 @@
+Django==5.1.7
+django-minio-backendls airplane_construction_project\settings_docker.py
