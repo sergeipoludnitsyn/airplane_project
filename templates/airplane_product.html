@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+</head>
+<body>
+
+<div class="product-page">
+    <header>
+        <a href="{% url 'airplane_list' %}" class="logo-link">
+            <img class="logo" src="{% static 'images/logo.jpg' %}" alt="Логотип">
+        </a>
+    </header>
+    
+    <main class="product-container">
+        <h1 class="product-title">{{ product.name }}</h1>
+        
+        <div class="video-with-overlays">
+            <div class="video-wrapper">
+                {% if product.video_url_full %}
+                    <video class="product-video" 
+                           id="productVideo"
+                           controls
+                           autoplay
+                           muted
+                           loop
+                           playsinline
+                           {% if product.poster_url %}poster="{{ product.poster_url }}"{% endif %}>
+                        <source src="{{ product.video_url_full }}" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                {% else %}
+                    <div class="no-video">
+                        <p>Видео не доступно</p>
+                        {% if product.image_url_full %}
+                            <img src="{{ product.image_url_full }}" alt="{{ product.name }}">
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="overlay-content">
+                <div class="specs-list">
+                    <div class="spec-item">
+                        <span class="spec-label">Ширина:</span>
+                        <span class="spec-value">{{ product.width|default:"-" }} мм</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Высота:</span>
+                        <span class="spec-value">{{ product.height|default:"-" }} мм</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Глубина:</span>
+                        <span class="spec-value">{{ product.depth|default:"-" }} мм</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Материал:</span>
+                        <span class="spec-value">{{ product.material|default:"-" }}</span>
+                    </div>
+                </div>
+                
+                <div class="price">
+                    <span>{{ product.price }} ₽</span>
+                </div>
+                
+                <!-- Кнопка добавления в корзину -->
+                <form method="post" action="{% url 'add_to_cart' product.id %}" class="add-to-cart-form">
+                    {% csrf_token %}
+                    <button type="submit" class="add-to-cart-btn">Добавить в заявку</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
