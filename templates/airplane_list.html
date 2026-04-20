@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -10,18 +9,6 @@
 <body>
 
 <div class="container">
-
-    <div style="text-align: right;">
-    {% if user.is_authenticated %}
-        Привет, {{ user.username }}! 
-        <form method="post" action="{% url 'logout' %}" style="display: inline;">
-            {% csrf_token %}
-            <button type="submit">Выйти</button>
-        </form>
-    {% else %}
-        <a href="{% url 'login' %}">Войти</a>
-    {% endif %}
-</div>
 
     <header>
         <a href="{% url 'airplane_list' %}" class="logo-link">

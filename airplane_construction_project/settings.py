@@ -65,7 +65,7 @@ WSGI_APPLICATION = 'airplane_construction_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test_db',
+        'NAME': 'airplane_project',  # ← было 'test_db', стало 'airplane_project'
         'USER': 'postgres',
         'PASSWORD': 'postgres1234',
         'HOST': 'localhost',
@@ -120,7 +120,7 @@ STORAGES = {
             "MINIO_USE_HTTPS": MINIO_USE_HTTPS,
             "MINIO_REGION": MINIO_REGION,
             "MINIO_STATIC_FILES_BUCKET": MINIO_STATIC_BUCKET,
-            "MINIO_CONSISTENCY_CHECK_ON_START": True,
+            "MINIO_CONSISTENCY_CHECK_ON_START": False,
             "MINIO_URL_EXPIRY_HOURS": timedelta(days=1),
         },
     },

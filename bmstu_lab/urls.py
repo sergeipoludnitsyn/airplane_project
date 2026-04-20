@@ -9,7 +9,5 @@ urlpatterns = [
     path('add-to-cart/<int:service_id>/', views.add_to_cart, name='add_to_cart'),
     path('delete-order/', views.delete_current_order, name='delete_current_order'),
     
-    # Добавить страницы входа и выхода
-    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+    path('request/<int:order_id>/', views.order_detail, name='order_detail'),
 ]

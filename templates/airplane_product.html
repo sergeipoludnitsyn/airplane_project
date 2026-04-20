@@ -67,11 +67,6 @@
                     <span>{{ product.price }} ₽</span>
                 </div>
                 
-                <!-- Кнопка добавления в корзину -->
-                <form method="post" action="{% url 'add_to_cart' product.id %}" class="add-to-cart-form">
-                    {% csrf_token %}
-                    <button type="submit" class="add-to-cart-btn">Добавить в заявку</button>
-                </form>
             </div>
         </div>
     </main>

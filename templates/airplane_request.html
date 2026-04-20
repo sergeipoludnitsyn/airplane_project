@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Текущая заявка</title>
-    <link rel="stylesheet" href="{% static 'css/application.css' %}">
+    <link rel="stylesheet" href="{% static 'css/application.css' %}?v=2">
 </head>
 <body>
 
@@ -67,10 +67,6 @@
             </button>
         </form>
         {% endif %}
-        
-        <div style="margin-top: 20px;">
-            <a href="{% url 'airplane_list' %}" class="back-to-catalog">← Вернуться в каталог</a>
-        </div>
     </div>
 </div>
 

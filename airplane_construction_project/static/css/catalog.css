@@ -203,10 +203,14 @@ h1 {
     color: inherit;
 }
 .product-title {
-    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
 }
 .product-price {
+    font-weight: bold;
     font-size: 18px;
+    color: #6A747C;
 }
 
 /* Сообщение об отсутствии товаров */
@@ -245,32 +249,31 @@ h1 {
     display: none;
 }
 
-/* Адаптивность для мобильных устройств */
-@media (max-width: 768px) {
-    .search-container {
-        flex-wrap: wrap;
-    }
-    
-    .search-input {
-        width: 100%;
-        order: 1;
-    }
-    
-    .search-button {
-        order: 2;
-        flex: 1;
-        font-size: 14px;
-        padding: 8px 15px;
-    }
-    
-    .clear-button {
-        order: 3;
-        flex: 1;
-        text-align: center;
-    }
-    
-    .order-button {
-        order: 4;
-        margin-top: 10px;
-    }
+/* Кнопка добавления в заявку */
+.add-to-cart-form {
+    padding: 10px;
+    text-align: center;
+}
+
+.add-to-cart-btn {
+    background-color: #C4C4C4;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #C4C4C4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.add-to-cart-btn:active {
+    transform: translateY(0);
 }
