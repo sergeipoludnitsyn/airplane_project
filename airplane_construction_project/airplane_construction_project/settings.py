@@ -25,13 +25,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'django_filters',
     'django_minio_backend.apps.DjangoMinioBackendConfig',
+    'bmstu_lab',
 ]
 
 # Исправленная конфигурация MIDDLEWARE
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',  # Должен быть до AuthenticationMiddleware
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -60,11 +63,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'airplane_construction_project.wsgi.application'
 
-# Database
+# ========== БАЗА ДАННЫХ POSTGRESQL ==========
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'airplane_project',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres123',
+        'HOST': 'localhost',
+        'PORT': '5455',
     }
 }
 
@@ -139,19 +146,20 @@ STORAGES = {
 }
 
 # Настройка STATIC_URL и MEDIA_URL для использования MinIO
-# Сначала устанавливаем STATIC_URL и MEDIA_URL на MinIO
 STATIC_URL = f'http://{MINIO_ENDPOINT}/{MINIO_STATIC_BUCKET}/'
 MEDIA_URL = f'http://{MINIO_ENDPOINT}/{MINIO_MEDIA_BUCKET}/'
 
-# Пути для локальной разработки (не используются при MinIO, но оставлены для совместимости)
+# Пути для локальной разработки
 STATICFILES_DIRS = [
     BASE_DIR / 'airplane_construction_project/static',
 ]
 
-# STATIC_ROOT и MEDIA_ROOT не нужны при использовании MinIO,
-# но оставим их для совместимости (не используются)
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 print(f"Static files will be served from: {STATIC_URL}")
 print(f"Media files will be served from: {MEDIA_URL}")
+
+# MinIO настройки для загрузки файлов
+DEFAULT_FILE_STORAGE = 'django_minio_backend.models.MinioBackend'
+MINIO_DEFAULT_BUCKET = 'django-media'

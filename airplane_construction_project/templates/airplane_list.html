@@ -12,14 +12,14 @@
 
 <div class="container">
     <header>
-        <a href="{% url 'airplane_list' %}" class="logo-link">
+        <a href="/" class="logo-link">
             <img class="logo" src="{% static 'images/logo.jpg' %}" alt="Логотип">
         </a>
         <h1>Комплектация самолета</h1>
     </header>
     
-    <!-- Форма поиска без JavaScript -->
-    <form method="GET" action="{% url 'airplane_list' %}" class="search-container">
+    <!-- Форма поиска -->
+    <form method="GET" action="/" class="search-container">
         <input 
             type="text" 
             name="search_product" 
@@ -29,21 +29,17 @@
         >
         <button type="submit" class="search-button">🔍</button>
         <div style="display: inline-flex; align-items: center; gap: 5px; position: relative;">
-            <a href="{% url 'order_request' %}" class="order-button">
-                <img src="{% static 'images/button.jpg' %}" alt="Корзина">
-            </a>
-            {% if cart_quantity > 0 %}
-                <span style="
-                    background-color: red; 
-                    color: white; 
-                    border-radius: 50%; 
-                    padding: 2px 6px; 
-                    font-size: 12px; 
-                    font-weight: bold;
-                    position: absolute;
-                    top: -10px;
-                    right: -10px;
-                ">{{ cart_quantity }}</span>
+            {% if is_cart_active %}
+                <a href="/request/" class="order-button active">
+                    <img src="{% static 'images/button.jpg' %}" alt="Корзина">
+                </a>
+                {% if cart_quantity > 0 %}
+                    <span class="cart-badge">{{ cart_quantity }}</span>
+                {% endif %}
+            {% else %}
+                <span class="order-button inactive">
+                    <img src="{% static 'images/button.jpg' %}" alt="Корзина пуста" style="opacity: 0.5;">
+                </span>
             {% endif %}
         </div>
     </form>
@@ -52,22 +48,30 @@
     <div class="products-grid">
         {% for product in products %}
             <div class="product-card">
-                <a href="{% url 'aircraft_part_detail' product.id %}" class="product-link">
+                <a href="/product/{{ product.id }}/" class="product-link">
                     {% if product.image_url %}
                         <img class="product-image" src="{{ product.image_url }}" alt="{{ product.title }}">
                     {% else %}
-                        <img class="product-image" src="{% static product.image %}" alt="{{ product.title }}">
+                        <img class="product-image" src="{% static 'images/default.jpg' %}" alt="{{ product.title }}">
                     {% endif %}
                     <div class="product-info">
                         <div class="product-title">{{ product.title }}</div>
                         <div class="product-price">{{ product.price }}</div>
                     </div>
                 </a>
+                
+                <!-- Кнопка добавления в заявку -->
+                <div class="add-to-order-form">
+                    <form method="post" action="/add-to-order/{{ product.id }}/">
+                        {% csrf_token %}
+                        <button type="submit" class="add-to-order-btn">Добавить в заявку</button>
+                    </form>
+                </div>
             </div>
         {% empty %}
             <div class="no-products">
                 <p>По вашему запросу "{{ search_query }}" ничего не найдено.</p>
-                <p><a href="{% url 'airplane_list' %}" class="back-to-catalog">Вернуться к каталогу</a></p>
+                <p><a href="/" class="back-to-catalog">Вернуться к каталогу</a></p>
             </div>
         {% endfor %}
     </div>
