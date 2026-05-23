@@ -1,4 +1,4 @@
-<!-- templates/product_detail.html -->
+<!-- templates/airplane_product.html -->
 
 {% load static %}
 
@@ -15,7 +15,7 @@
 <div class="product-page">
     <!-- Шапка страницы с логотипом -->
     <header>
-        <a href="{% url 'airplane_list' %}" class="logo-link">
+        <a href="/" class="logo-link">
             <img class="logo" src="{% static 'logo.jpg' %}" alt="Логотип">
         </a>
     </header>
@@ -92,7 +92,7 @@
                 
                 <!-- Цена -->
                 <div class="price">
-                    <span>{{ product.price }} </span>
+                    <span>{{ product.price }}</span>
                 </div>
             </div>
         </div>

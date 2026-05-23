@@ -46,7 +46,7 @@ h1 {
     margin: 0;
 }
 
-/* Поисковая форма и кнопка заказа */
+/* Поисковая форма */
 .search-container {
     display: flex;
     align-items: center;
@@ -65,8 +65,6 @@ h1 {
     border: 1px solid #ccc;
     background-color: white;
 }
-
-/* Стили для кнопки поиска - без дублирования значка */
 .search-button {
     background-color: #C4C4C4;
     color: #1E1E1E;
@@ -78,37 +76,14 @@ h1 {
     font-size: 18px;
     font-weight: 600;
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    white-space: nowrap;
 }
-
 .search-button:hover {
     background-color: #6A747C;
     color: white;
     transform: scale(1.02);
 }
 
-/* Стили для кнопки очистки */
-.clear-button {
-    background-color: #D3CECE;
-    color: #1E1E1E;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-.clear-button:hover {
-    background-color: #6A747C;
-    color: white;
-}
-
-/* КНОПКА КОРЗИНЫ - УБИРАЕМ ФОН */
+/* Кнопка корзины */
 .order-button {
     display: inline-block;
     background: transparent !important;
@@ -117,52 +92,33 @@ h1 {
     margin: 0;
     line-height: 0;
     cursor: pointer;
+    position: relative;
 }
-
 .order-button img {
     max-width: 50px;
     max-height: 50px;
     object-fit: contain;
     border-radius: 12px;
-    background: transparent;
-    display: block;
     transition: transform 0.3s ease;
 }
-
 .order-button img:hover {
     transform: scale(1.05);
 }
 
-.order-button:hover,
-.order-button:focus,
-.order-button:active {
-    background: transparent !important;
-    background-color: transparent !important;
-    border: none !important;
-    outline: none !important;
+/* Бейдж корзины */
+.cart-badge {
+    background-color: #DC3545;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    top: -10px;
+    right: -10px;
 }
 
-/* Информация о результатах поиска */
-.search-results-info {
-    background-color: white;
-    padding: 15px;
-    border-radius: 12px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.search-results-info p {
-    margin: 5px 0;
-    color: #1E1E1E;
-}
-
-.search-results-info strong {
-    color: #6A747C;
-}
-
-/* Каталог товаров */
+/* Сетка товаров */
 .products-grid {
     display: grid;
     gap: 20px;
@@ -170,46 +126,86 @@ h1 {
     margin-top: 20px;
 }
 
+/* Карточка товара */
 .product-card {
     background-color: white;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,.1);
     transition: transform .2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 .product-card:hover {
     transform: scale(1.02);
 }
 .product-link {
     text-decoration: none;
-    display: block;
+    display: flex;
+    flex-direction: column;
     color: inherit;
+    flex: 1;
 }
 .product-image {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    vertical-align: middle;
-    border-radius: 12px;
 }
 .product-info {
-    padding: 10px;
+    padding: 15px;
     text-align: center;
-    color: #1E1E1E;
-    border-radius: 12px;
-}
-.product-title,
-.product-price {
-    color: inherit;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 .product-title {
-    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #1E1E1E;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .product-price {
     font-size: 18px;
+    color: #1E1E1E;
+    margin-top: 10px;
 }
 
-/* Сообщение об отсутствии товаров */
+/* Форма добавления в заявку - ЦЕНТРИРОВАНИЕ */
+.add-to-order-form {
+    display: flex;
+    justify-content: center;
+    padding: 0 15px 15px 15px;
+}
+
+/* Кнопка добавления в заявку */
+.add-to-order-btn {
+    background-color: #C4C4C4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Cycle', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 180px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+.add-to-order-btn:hover {
+    background-color: #52585e;
+    transform: scale(1.02);
+}
+
+/* Пустая корзина */
 .no-products {
     text-align: center;
     padding: 60px 20px;
@@ -217,13 +213,6 @@ h1 {
     border-radius: 12px;
     grid-column: 1 / -1;
 }
-
-.no-products p {
-    margin: 10px 0;
-    color: #6A747C;
-    font-size: 18px;
-}
-
 .back-to-catalog {
     display: inline-block;
     margin-top: 15px;
@@ -232,45 +221,53 @@ h1 {
     color: #1E1E1E;
     text-decoration: none;
     border-radius: 12px;
-    transition: all 0.3s ease;
 }
-
 .back-to-catalog:hover {
     background-color: #6A747C;
     color: white;
-    transform: scale(1.02);
 }
 
-.product-details-btn {
-    display: none;
+/* Добавьте в конец файла static/css/catalog.css */
+
+/* Кнопка корзины - активная */
+.order-button.active {
+    display: inline-block;
+    background: transparent !important;
+    border: none !important;
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+    cursor: pointer;
+    position: relative;
 }
 
-/* Адаптивность для мобильных устройств */
-@media (max-width: 768px) {
-    .search-container {
-        flex-wrap: wrap;
-    }
-    
-    .search-input {
-        width: 100%;
-        order: 1;
-    }
-    
-    .search-button {
-        order: 2;
-        flex: 1;
-        font-size: 14px;
-        padding: 8px 15px;
-    }
-    
-    .clear-button {
-        order: 3;
-        flex: 1;
-        text-align: center;
-    }
-    
-    .order-button {
-        order: 4;
-        margin-top: 10px;
-    }
+.order-button.active img {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: contain;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.order-button.active img:hover {
+    transform: scale(1.05);
+}
+
+/* Кнопка корзины - неактивная (серая) */
+.order-button.inactive {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+    position: relative;
+    cursor: default;
+}
+
+.order-button.inactive img {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: contain;
+    border-radius: 12px;
+    filter: grayscale(100%);
+    opacity: 0.5;
 }

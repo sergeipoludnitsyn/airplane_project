@@ -122,10 +122,11 @@ header {
 }
 
 .price {
-    font-size: 34px;
+    font-size: 28px;
     font-weight: bold;
     margin-top: 0;
-    align-self: flex-end; /* Выравнивание по нижнему краю */
+    align-self: flex-end;
+    white-space: nowrap;
 }
 
 /* Кнопки действий */

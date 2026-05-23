@@ -1,4 +1,4 @@
-<!-- templates/application.html -->
+<!-- templates/airplane_request.html -->
 
 {% load static %}
 
@@ -14,7 +14,7 @@
 <div class="container">
     <!-- Шапка страницы с логотипом -->
     <header>
-        <a href="{% url 'airplane_list' %}" class="logo-link">
+        <a href="/" class="logo-link">
             <img class="logo" src="{% static 'logo.jpg' %}" alt="Логотип">
         </a>
     </header>
@@ -28,8 +28,8 @@
             <!-- Верхняя секция с организацией и итоговой суммой -->
             <div class="top-section">
                 <div class="organization-field">
-                    <input type="text" id="organization" name="organization" placeholder="Аэрофлот">
-                </div>
+    <input type="text" id="organization" name="organization" placeholder="Аэрофлот" value="{{ organization }}">
+</div>
                 <div class="total-sum-field">
                     <label>Итоговая сумма:</label>
                     <span class="total-sum">{{ total_sum }} ₽</span>
@@ -50,16 +50,30 @@
                     {% for item in cart_items %}
                     <tr class="product-row">
                         <td class="product-image-cell">
-                            <img class="product-image" src="{% static item.image %}" alt="{{ item.title }}">
+                            <img class="product-image" src="{{ item.image_url|default:'/static/images/default.jpg' }}" alt="{{ item.title }}">
                         </td>
                         <td class="product-name">{{ item.title }}</td>
                         <td class="product-price">{{ item.price }} ₽</td>
                         <td class="product-quantity">{{ item.quantity }}</td>
                     </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="empty-cart">Корзина пуста</td>
+                    </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </form>
+        
+        <!-- Кнопка удаления заявки через SQL UPDATE (ВНЕ основной формы) -->
+        {% if order and order.status == 'draft' %}
+        <form method="post" action="/delete-order/{{ order.id }}/" class="delete-order-form">
+            {% csrf_token %}
+            <button type="submit" class="delete-order-btn">
+                Удалить заявку
+            </button>
+        </form>
+        {% endif %}
     </div>
 </div>
 
