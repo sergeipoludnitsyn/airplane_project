@@ -1,0 +1,80 @@
+<!-- templates/configuration.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Конфигурация самолёта</title>
+    <link rel="stylesheet" href="{% static 'css/application.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <!-- Шапка страницы с логотипом -->
+    <header>
+        <a href="/" class="logo-link">
+            <img class="logo" src="{% static 'logo.jpg' %}" alt="Логотип">
+        </a>
+    </header>
+    
+    <!-- Основное содержимое страницы -->
+    <div class="content-wrapper">
+        <!-- Форма конфигурации -->
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            <!-- Верхняя секция с заказчиком и итоговой суммой -->
+            <div class="top-section">
+                <div class="organization-field">
+                    <input type="text" id="organization" name="organization" placeholder="Авиакомпания" value="{{ organization }}">
+                </div>
+                <div class="total-sum-field">
+                    <label>Итоговая сумма:</label>
+                    <span class="total-sum">{{ total_sum }} ₽</span>
+                </div>
+            </div>
+            
+            <!-- Центральная таблица с самолётами -->
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>Изображение</th>
+                        <th>Наименование</th>
+                        <th>Цена</th>
+                        <th>Количество</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                    <tr class="product-row">
+                        <td class="product-image-cell">
+                            <img class="product-image" src="{{ item.image_url|default:'/static/images/default.jpg' }}" alt="{{ item.title }}">
+                        </td>
+                        <td class="product-name">{{ item.title }}</td>
+                        <td class="product-price">{{ item.price }}</td>
+                        <td class="product-quantity">{{ item.quantity }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="empty-cart">Конфигурация пуста</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+        
+        <!-- Кнопка удаления конфигурации через SQL UPDATE (ВНЕ основной формы) -->
+        {% if configuration and configuration.status == 'draft' %}
+        <form method="post" action="/delete-configuration/{{ configuration.id }}/" class="delete-order-form">
+            {% csrf_token %}
+            <button type="submit" class="delete-order-btn">
+                Удалить конфигурацию
+            </button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>

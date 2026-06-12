@@ -1,0 +1,6 @@
+# Создайте .dockerignore
+echo __pycache__ > .dockerignore
+echo *.pyc >> .dockerignore
+echo .env >> .dockerignore
+echo .git >> .dockerignore
+echo db.sqlite3 >> .dockerignore

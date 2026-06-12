@@ -1,0 +1,27 @@
+/* search-bar.css */
+
+.search-bar {
+    position: relative; /* Позиционирование */
+    width: 60%; /* Ширина прямоугольника */
+    max-width: 800px; /* Максимальная ширина */
+    margin: 40px auto; /* Центрирование по горизонтали */
+    background-color: #f0f0f0; /* Светлый серый фон */
+    border-radius: 12px; /* Закруглённые углы */
+    padding: 20px; /* Внутренние отступы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Мягкая тень */
+}
+
+.search-bar input.search-input {
+    width: 100%; /* Полная ширина родителя */
+    padding: 10px; /* Внутренние отступы */
+    font-size: 16px; /* Размер шрифта */
+    border: none; /* Без границ */
+    border-radius: 12px; /* Закруглённые углы */
+    background-color: #C4C4C4; /* Белый фон */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Мягкая внутренняя тень */
+}
+
+.search-bar input.search-input:focus {
+    outline: none; /* Убираем контур при фокусе */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2); /* Более заметная тень при фокусе */
+}

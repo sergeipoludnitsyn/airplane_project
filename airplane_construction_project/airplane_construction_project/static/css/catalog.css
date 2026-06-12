@@ -1,0 +1,273 @@
+/* static/css/catalog.css */
+
+/* Общие настройки */
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Cycle', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #D3CECE;
+    color: #1E1E1E;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Шапка страницы */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100px;
+    background-color: #C4C4C4;
+    text-align: center;
+    border-radius: 12px;
+}
+.logo {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 20px;
+    top: 25px;
+    border-radius: 12px;
+}
+.logo-link {
+    display: inline-block;
+}
+h1 {
+    color: #6A747C;
+    font-size: 28px;
+    margin: 0;
+}
+
+/* Поисковая форма */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #C4C4C4;
+    padding: 10px;
+    border-radius: 12px;
+    gap: 10px;
+}
+.search-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+.search-button {
+    background-color: #C4C4C4;
+    color: #1E1E1E;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Cycle', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.search-button:hover {
+    background-color: #6A747C;
+    color: white;
+    transform: scale(1.02);
+}
+
+/* Кнопка корзины */
+.order-button {
+    display: inline-block;
+    background: transparent !important;
+    border: none !important;
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+    cursor: pointer;
+    position: relative;
+}
+.order-button img {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: contain;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+.order-button img:hover {
+    transform: scale(1.05);
+}
+
+/* Бейдж корзины */
+.cart-badge {
+    background-color: #DC3545;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+/* Сетка товаров */
+.products-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    margin-top: 20px;
+}
+
+/* Карточка товара */
+.product-card {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,.1);
+    transition: transform .2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.product-card:hover {
+    transform: scale(1.02);
+}
+.product-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+    flex: 1;
+}
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.product-info {
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.product-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #1E1E1E;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.product-price {
+    font-size: 18px;
+    color: #1E1E1E;
+    margin-top: 10px;
+}
+
+/* Форма добавления в заявку - ЦЕНТРИРОВАНИЕ */
+.add-to-order-form {
+    display: flex;
+    justify-content: center;
+    padding: 0 15px 15px 15px;
+}
+
+/* Кнопка добавления в заявку */
+.add-to-order-btn {
+    background-color: #C4C4C4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Cycle', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 180px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+.add-to-order-btn:hover {
+    background-color: #52585e;
+    transform: scale(1.02);
+}
+
+/* Пустая корзина */
+.no-products {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: white;
+    border-radius: 12px;
+    grid-column: 1 / -1;
+}
+.back-to-catalog {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #C4C4C4;
+    color: #1E1E1E;
+    text-decoration: none;
+    border-radius: 12px;
+}
+.back-to-catalog:hover {
+    background-color: #6A747C;
+    color: white;
+}
+
+/* Добавьте в конец файла static/css/catalog.css */
+
+/* Кнопка корзины - активная */
+.order-button.active {
+    display: inline-block;
+    background: transparent !important;
+    border: none !important;
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+    cursor: pointer;
+    position: relative;
+}
+
+.order-button.active img {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: contain;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.order-button.active img:hover {
+    transform: scale(1.05);
+}
+
+/* Кнопка корзины - неактивная (серая) */
+.order-button.inactive {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+    position: relative;
+    cursor: default;
+}
+
+.order-button.inactive img {
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: contain;
+    border-radius: 12px;
+    filter: grayscale(100%);
+    opacity: 0.5;
+}

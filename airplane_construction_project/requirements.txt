@@ -1,0 +1,8 @@
+Django==6.0.4
+djangorestframework==3.15.2
+drf-spectacular==0.27.2
+django-redis==5.4.0
+redis==5.0.1
+psycopg2-binary==2.9.9
+django-minio-backend==4.0.0
+Pillow==10.3.0
